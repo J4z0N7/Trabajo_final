@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import modelos.ClienteBean;
 import modelos.PersonaBean;
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -29,31 +28,12 @@ public class clienteControlador {
 
     private PersonaValidation PersonaValidar;
     private JdbcTemplate jdbcTemplate;
+//    private List lista;
 
     public clienteControlador() {
         this.PersonaValidar = new PersonaValidation();
         ConectarDb con = new ConectarDb();
         this.jdbcTemplate = new JdbcTemplate(con.conectar());
-    }
-
-    @RequestMapping(value = "formJstl.htm", method = RequestMethod.GET)
-    public ModelAndView form() {
-        PersonaBean persona = new PersonaBean();
-        return new ModelAndView("vista/formJstl", "persona", new PersonaBean());
-    }
-
-    @RequestMapping(value = "formJstl.htm", method = RequestMethod.POST)
-    public ModelAndView forma() {
-        ModelAndView mav = new ModelAndView();
-        String sql = "select * from dventas";
-        List datos = this.jdbcTemplate.queryForList(sql);
-        mav.addObject("dventas", datos);
-//        mav.addObject("nombre", pers.getNombre());
-//        mav.addObject("apellido", pers.getApellido());
-//        mav.addObject("correo", pers.getCorreo());
-//        mav.addObject("telefono", pers.getEdad());
-        mav.setViewName("vista/mostrarDatos"); 
-        return mav;
     }
 
     @RequestMapping("listarJstl.htm")
@@ -130,18 +110,16 @@ public class clienteControlador {
                     listados.add(fileItem.getString());
                 }
             }
-            //cli.setId_cliente(Integer.parseInt(listados.get(0)));
-            cli.setNombre(listados.get(1));
-            cli.setDireccion(listados.get(2));
-            cli.setTelefono(Integer.parseInt(listados.get(3)));
-            cli.setCiudad(listados.get(4));
+            cli.setNombre(listados.get(0));
+            cli.setDireccion(listados.get(1));
+            cli.setTelefono(Integer.parseInt(listados.get(2)));
+            cli.setCiudad(listados.get(3));
         }
         
         
-        String sql = "insert into clientes(id_cliente,nombre,direccion, "
-                + "telefono,ciudad,foto) values(?,?,?,?,?,?)";
-        jdbcTemplate.update(sql,
-                cli.getId_cliente(), cli.getNombre(), cli.getDireccion(), cli.getTelefono(), cli.getCiudad(), cli.getFoto());
+        String sql = "insert into clientes(nombre,direccion, "
+                + "telefono,ciudad,foto) values(?,?,?,?,?)";
+        jdbcTemplate.update(sql, cli.getNombre(), cli.getDireccion(), cli.getTelefono(), cli.getCiudad(), cli.getFoto());
         mav.setViewName("redirect:/listarJstl.htm");
         return mav;
     }
@@ -153,6 +131,8 @@ public class clienteControlador {
         int id = Integer.parseInt(req.getParameter("id_cliente"));
         String deletePath = req.getServletContext().getRealPath("") + File.separator;
         String foto = req.getParameter("foto");
+        System.out.println(deletePath + " ------ " + foto);
+
         cliB.borrarImagen(foto,deletePath, id);
         mav.setViewName("redirect:/listarJstl.htm");
         return mav;
@@ -164,8 +144,8 @@ public class clienteControlador {
         ModelAndView mav = new ModelAndView();
         int id = Integer.parseInt(req.getParameter("id_cliente"));
         String sql = "select * from clientes where id_cliente = ?";
-        List cli = this.jdbcTemplate.queryForList(sql, id);
-        //ClienteBean cli = consultaClientexId(id);
+        //List cli = this.jdbcTemplate.queryForList(sql, id);
+        ClienteBean cli = consultaClientexId(id);
         mav.addObject("cliente", cli);
         mav.setViewName("vista/updateCliente");
         return mav;
@@ -174,7 +154,7 @@ public class clienteControlador {
 //Metodo Conversor
     public ClienteBean consultaClientexId(int id) {
         ClienteBean cliente = new ClienteBean();
-        String sql = "select * from clientes where id = " + id;
+        String sql = "select * from clientes where id_cliente = " + id;
         return (ClienteBean) this.jdbcTemplate.query(sql, new ResultSetExtractor<ClienteBean>() {
             public ClienteBean extractData(ResultSet rs) throws SQLException, DataAccessException {
                 if (rs.next()) {
@@ -193,22 +173,36 @@ public class clienteControlador {
     /**
      * 
      * @param cli
+     * @param req
      * @return Este metodo ingresa los datos actualizados del cliente dentro de la BD
      */
     @RequestMapping(value = "updateCliente.htm", method = RequestMethod.POST)
-    public ModelAndView updateCliente(ClienteBean cli) {
-        ModelAndView mav = new ModelAndView();
-        String sql = "update clientes set"
-                + "nombre = ?,"
-                + "direccion = ?,"
-                + "telefono = ?,"
-                + "ciudad = ?,"
-                + "where id_cliente = ?";
-        jdbcTemplate.update(
-                sql, cli.getNombre(), cli.getDireccion(), cli.getTelefono(), cli.getCiudad()
-        );
-        mav.setViewName("redirect://listarJstl.htm");
-        return mav;
+    public ModelAndView updateCliente(ClienteBean cli, HttpServletRequest req){
+    ModelAndView mav = new ModelAndView();
+    VentaDao vent4 = new VentaDao();
+    ArrayList<String> list4 = new ArrayList<>();
+    boolean isMultipart = ServletFileUpload.isMultipartContent(req);
+    DiskFileItemFactory file = new DiskFileItemFactory();
+    ServletFileUpload fileUpload = new ServletFileUpload(file);
+    List <FileItem> items = null;
+    System.out.print(list4);
+    try {
+        items=fileUpload.parseRequest(req);
+        for (int i = 0; i <items.size(); i++){
+            FileItem fileItem = (FileItem) items.get(i);
+            list4.add(fileItem.getString());
     }
-
+    } catch (FileUploadException ex){
+        System.out.print("Error en la carga de la imagen clienteControlador/updateCliente..." + ex.getMessage());
+    }
+    if (list4.get(4).isEmpty() || list4.get(4).equals("") || list4.get(4).equals(null)){
+        vent4.actUsuarioSinFoto(cli, items);
+    } else {
+        vent4.actUsuarioConFoto(cli, isMultipart, req, items);
+    }
+    mav.setViewName("redirect://listarJstl.htm");
+    return mav;
+    }
 }
+
+

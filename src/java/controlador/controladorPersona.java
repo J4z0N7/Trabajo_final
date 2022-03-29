@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import modelos.ClienteBean;
 import modelos.PersonaBean;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -47,7 +46,7 @@ public class controladorPersona{
         mav.addObject("nombre", pers.getNombre());
         mav.addObject("apellido", pers.getApellido());
         mav.addObject("correo", pers.getCorreo());
-        mav.addObject("telefono", pers.getEdad());
+        mav.addObject("edad", pers.getEdad());
         return mav;  
     }        
 @RequestMapping("listarJstl.htm")

@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import modelos.DVentas;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 
@@ -20,7 +19,7 @@ public class ventaControlador {
     public ModelAndView formVenta(){
         ModelAndView mav = new ModelAndView();
         this.jdbcTemplate = new JdbcTemplate(con.conectar());
-        DVentas venta = new DVentas();
+        //DVentas venta = new DVentas();
         VentaDao ventasDao = new VentaDao();
         List datos = ventasDao.consultarVentas();
         mav.addObject("venta", datos);

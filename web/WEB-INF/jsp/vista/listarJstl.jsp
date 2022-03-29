@@ -56,10 +56,10 @@
                         <td><c:out value="${p.telefono}"/></td>
                         <td><c:out value="${p.ciudad}"/></td>
                         <td>
-                            <img style="height: 50px; width: 50px;" src='<c:url value="${cliente.foto}"/>' />
+                            <img style="height: 50px; width: 50px;" src='<c:url value="${p.foto}"/>' />
                         </td>
-                        <td><a href="updateCliente.htm?cliente=${p.id_cliente}" class="btn btn-warning">Actualizar</a></td>
-                        <td><a href="deleteCliente.htm?cliente=${p.id_cliente}" class=" btn btn-danger">Borrar</a></td>
+                        <td><a href="updateCliente.htm?id_cliente=${p.id_cliente}&foto=${p.foto}" class="btn btn-warning">Actualizar</a></td>
+                        <td><a href="deleteCliente.htm?id_cliente=${p.id_cliente}&foto=${p.foto}" class=" btn btn-danger">Borrar</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

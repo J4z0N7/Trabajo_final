@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="cabecera.jsp" %>
 
 
 <!DOCTYPE html>
@@ -28,7 +29,7 @@
                     <tr>
                         <td><c:out value="${nombre}"/></td>
                         <td><c:out value="${apellido}"/></td>
-                        <td><c:out value="${edad}"/></td>
+                        <td><c:out value="${edad} años"/></td>
                         <td><c:out value="${correo}"/></td>
                     </tr>
                 

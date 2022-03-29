@@ -28,7 +28,11 @@
                 <prop key="updateCliente.htm">clienteControlador</prop>
                 <prop key="formVenta.htm">ventas</prop>
                 <prop key="formRegistrarVentas.htm">ventas</prop>
-                
+                <prop key="formProducto.htm">producto</prop>
+                <prop key="listarProducto.htm">producto</prop>
+                <prop key="agregarProducto.htm">producto</prop>
+                <prop key="deleteProducto.htm">producto</prop>
+                <prop key="updateProducto.htm">producto</prop>
             </props>
         </property>
     </bean>
@@ -48,5 +52,5 @@
     <bean name="controladorPersona" class="controlador.controladorPersona"/>
     <bean name="clienteControlador" class="controlador.clienteControlador"/>
     <bean name="ventas" class="controlador.ventaControlador"/>
-   
+    <bean name="producto" class="controlador.productoControlador"/>  
 </beans>

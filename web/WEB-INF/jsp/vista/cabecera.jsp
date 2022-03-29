@@ -22,9 +22,9 @@
                                 Seleccione una opción:
                                 </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="formJstl.htm"> Ingresar Datos </a></li>
-                                        <li><a class="dropdown-item" href="index.htm">Index </a></li>
-                                        <li><a class="dropdown-item" href="formRegistrarVentas.htm">Ventas</a></li>
+                                        <li><a class="dropdown-item" href="formJstl.htm"> Datos clientes </a></li>
+                                        <li><a class="dropdown-item" href="agregarProducto.htm">Datos productos </a></li>
+                                        <li><a class="dropdown-item" href="formRegistrarVentas.htm">Datos ventas</a></li>
                                     </ul>
                         </div>
                     </nav>

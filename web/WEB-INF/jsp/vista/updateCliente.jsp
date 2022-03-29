@@ -23,7 +23,7 @@
               
                         <h1>Actualizar el cliente</h1>
                     </div>
-                    <form:form commandName="cliente" cssClass="navbar-form">
+                    <form:form commandName="cliente" cssClass="navbar-form" enctype="multipart/form-data">
                         <form:errors path="*" element="div" cssClass="alert alert-danger"/>
                             <div class="form-group">
                                 <form:label path="nombre"> Nombre Usuario: </form:label>
@@ -69,7 +69,7 @@
                             <input type="reset" value="Limpiar" class="btn btn-info">
                             <br>
                             <br>
-                            <a href="deleteCliente.htm?cliente=${cliente.id}" class=" btn btn-warning">Borrar</a>
+                            <a href="deleteCliente.htm?cliente=${cliente.id_cliente}" class=" btn btn-warning">Borrar</a>
                             </div>
                         </form:form>
                     
