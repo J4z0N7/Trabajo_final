@@ -26,46 +26,39 @@
                });
         } );
         </script>
-        <title>Listado de Datos</title>
+        <title>Listado de Ventas</title>
     </head>
     <body>
         <br>
-        <a type="button" href="agregarProducto.htm" class="btn btn-warning" >Regresar al formulario</a>
+        <a type="button" href="formRegistrarVentas.htm" class="btn btn-warning" >Regresar al formulario</a>
         <div style="text-align:center;"><h1>Información recogida</h1></div>
         <div class="container">
         <table id="tabla1" class="table table-striped">
         
             
             <thead>
-            <th>Id</th>    
-            <th>Descripcion</th>
-            <th>Precio</th>
-            <th>Foto Producto</th>
+            <th>Id Venta</th>    
+            <th>Cantidad</th>
+            <th>Cliente</th>
+            <th>Producto</th>
             <th>Actualizar</th>
             <th>Borrar</th>
                 </thead>
             
                 <tbody>
-                <c:forEach items="${producto}" var="pr">
+                <c:forEach items="${venta}" var="v">
                     <tr>
-                        <td><c:out value="${pr.id_producto}"/></td>
-                        <td><c:out value="${pr.descripcion}"/></td>
-                        <td><c:out value="${pr.precio}"/></td>
-                        <td>
-                            <img style="height: 50px; width: 50px;" src='<c:url value="${pr.foto_producto}"/>' />
-                        </td>
-                        <td><a href="updateProducto.htm?id_producto=${pr.id_producto}&foto_producto=${pr.foto_producto}" class="btn btn-warning">Actualizar</a></td>
-                        <td><a href="deleteProducto.htm?id_producto=${pr.id_producto}&foto_producto=${pr.foto_producto}" class=" btn btn-danger">Borrar</a></td>
+                        <td><c:out value="${v.id_ventas}"/></td>
+                        <td><c:out value="${v.cantidad}"/></td>
+                        <td><c:out value="${v.id_cliente}"/></td>
+                        <td><c:out value="${v.id_producto}"/></td>                      
+            
                     </tr>
                 </c:forEach>
                 </tbody>
             <br>
             <br>
-                
-           
-                
         </table>
-         
         </div>
     </body>
 </html>

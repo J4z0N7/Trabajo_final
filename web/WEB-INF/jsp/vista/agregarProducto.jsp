@@ -51,11 +51,7 @@
                             <input type="reset" value="Limpiar" class="btn btn-info">
                             <br>
                             <br>
-                            <a href="updateProducto.htm?cliente=${cliB.id_cliente}" class="btn btn-warning">Actualizar</a>
-                            <br>
-                            <br>
-                            <a href="deleteCliente.htm?cliente=${cliB.id_cliente}" class=" btn btn-warning">Borrar</a>
-
+                            
                         </form:form>
                     
                 </div>

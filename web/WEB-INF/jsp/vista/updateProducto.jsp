@@ -23,7 +23,7 @@
               
                         <h1>Actualizar el producto</h1>
                     </div>
-                    <form:form commandName="producto" cssClass="navbar-form">
+                    <form:form commandName="producto" cssClass="navbar-form" enctype="multipart/form-data">
                         <form:errors path="*" element="div" cssClass="alert alert-danger"/>
                             <div class="form-group">
                                 <form:label path="descripcion"> Nueva descripción: </form:label>

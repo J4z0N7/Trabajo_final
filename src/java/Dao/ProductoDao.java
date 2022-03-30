@@ -21,7 +21,7 @@ public class ProductoDao {
     private JdbcTemplate jdbcTemplate;
     private int MEMORY_THRESHOLD;
     private long MAX_REQUEST_SIZE;
-    private String UPLOAD_DIRECTORY;
+    private String UPLOAD_DIRECTORY="..\\..\\web\\imagenes\\fotos";
     
     public int consultarCtd_Producto(){
         int Pro1=0;
@@ -68,9 +68,9 @@ public class ProductoDao {
             produc.setDescripcion(lista2.get(0));
             produc.setPrecio(Integer.parseInt(lista2.get(1)));
 //-----------------------------------------------------------------------------            
-            String sql = "update productos set"
+            String sql = "update productos set "
                 + "descripcion = ?,"
-                + "precio = ?,"
+                + "precio = ? "
                 + "where id_producto = ?";
         jdbcTemplate.update(
                 sql, produc.getDescripcion(), produc.getPrecio(), produc.getId_producto()
@@ -118,10 +118,10 @@ public class ProductoDao {
             produc.setDescripcion(lista5.get(0));
             produc.setPrecio(Integer.parseInt(lista5.get(1)));        
         }
-        String sql = "update productos set"
+        String sql = "update productos set "
                 + "descripcion = ?,"
                 + "precio = ?,"
-                + "foto_producto = ?,"
+                + "foto_producto = ? "
                 + "where id_producto = ?";
         jdbcTemplate.update(sql, produc.getDescripcion(), produc.getPrecio(), produc.getFoto_producto(), produc.getId_producto());
     }

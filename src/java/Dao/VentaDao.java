@@ -19,7 +19,7 @@ public class VentaDao {
     private JdbcTemplate jdbcTemplate;
     private int MEMORY_THRESHOLD;
     private long MAX_REQUEST_SIZE;
-    private String UPLOAD_DIRECTORY;
+    private String UPLOAD_DIRECTORY="..\\..\\web\\imagenes\\fotos";
 
     public List consultarVentas(){
         List datos = new ArrayList();
@@ -49,7 +49,7 @@ public class VentaDao {
     public int consultarCtd_Producto(){
         int Pro1=0;
         this.jdbcTemplate = new JdbcTemplate(con.conectar());
-        String sql = "select * from productos;";
+        String sql = "select descripcion from productos;";
         Pro1=jdbcTemplate.queryForObject(sql, Integer.class);
         Pro1=this.jdbcTemplate.queryForObject(sql, Integer.class);
         return Pro1;
@@ -92,7 +92,7 @@ public class VentaDao {
             cli.setTelefono(Integer.parseInt(lista2.get(2)));
             cli.setCiudad(lista2.get(3));       
 //-----------------------------------------------------------------------------            
-            String sql = "update clientes set"
+            String sql = "update clientes set "
                 + "nombre = ?,"
                 + "direccion = ?,"
                 + "telefono = ?,"
@@ -149,10 +149,7 @@ public class VentaDao {
         }
         String sql="update clientes set nombre = ?, direccion = ?, telefono = ?, ciudad = ?, foto = ? where id_cliente = ?";
         jdbcTemplate.update(sql, cli.getNombre(), cli.getDireccion(), cli.getTelefono(), cli.getCiudad(), cli.getFoto(), cli.getId_cliente());
-    }
-    public void actUsuarioSinFoto(ClienteBean cli) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    }    
 }   
 
     

@@ -152,6 +152,7 @@ public class productoControlador {
         int id = Integer.parseInt(req.getParameter("id_producto"));
         String deletePath = req.getServletContext().getRealPath("") + File.separator;
         String foto = req.getParameter("foto_producto");
+        System.out.println(deletePath + " ------ " + foto);
         produc.borrarImagen(foto,deletePath, id);
         mav.setViewName("redirect:/listarProducto.htm");
         return mav;
@@ -210,7 +211,7 @@ public class productoControlador {
     } catch (FileUploadException ex){
         System.out.print("Error en la carga de la imagen productoControlador/updateProducto..." + ex.getMessage());
     }
-    if (list4.get(3).isEmpty() || list4.get(3).equals("") || list4.get(3).equals(null)){
+    if (list4.get(2).isEmpty() || list4.get(2).equals("") || list4.get(2).equals(null)){
         produc1.actUsuarioSinFoto(produc, items);
     } else {
         produc1.actUsuarioConFoto(produc, isMultipart, req, items);

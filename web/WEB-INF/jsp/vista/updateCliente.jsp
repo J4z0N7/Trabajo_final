@@ -69,7 +69,6 @@
                             <input type="reset" value="Limpiar" class="btn btn-info">
                             <br>
                             <br>
-                            <a href="deleteCliente.htm?cliente=${cliente.id_cliente}" class=" btn btn-warning">Borrar</a>
                             </div>
                         </form:form>
                     

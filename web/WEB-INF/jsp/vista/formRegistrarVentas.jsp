@@ -1,4 +1,5 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsf/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="cabecera.jsp" %>
 <!DOCTYPE html>
@@ -24,21 +25,21 @@
                     <form:form commandName="persona" cssClass="navbar-form" method="post">
                         <form:errors path="*" element="div" cssClass="alert alert-danger"/>
                             <div class="form-group">
-                            <form:label path="Ctd_Producto" cssClass="input-group-addon"> Cantidad Ventas: </form:label>
-                            <form:input path="Ctd_Producto" cssClass="form-control"></form:input>
+                            <form:label path="cantidad" cssClass="input-group-addon"> Cantidad de Ventas: </form:label>
+                            <form:input path="cantidad" cssClass="form-control"></form:input>
                             </div>
                             <br>
                             <br>
                             <div class="form-group">
-                            <form:label path="Nombre_Producto"> Nombre del Producto: </form:label>
-                            <form:input path="Nombre_Producto" placeholder="Ingrese el nombre del producto nuevo"></form:input>
+                            <form:label path="id_cliente"> Nombre del cliente: </form:label>
+                            <form:select path="id_cliente" cssClass="form-control" ></form:select>
                             </div>
                             <br>
                             <br>
                             <div class="form-group">
-                            <form:select path="Nombre_Producto" cssClass="form-control"> 
-                                <c:forEach var="dato" items="$(idClientes)">
-                                    <option value="%(dato.id)">$(dato.nombre)</option>
+                            <form:select path="id_producto" cssClass="form-control"> 
+                                <c:forEach items="$(id_producto)" var="dato">
+                                    <option value="%(dato.id_producto)">$(dato.nombre)</option>
                                 </c:forEach>
                             </form:select>
                             </div>
@@ -46,7 +47,7 @@
                             <br>
                             <div class="form-group">
                             <form:label path="Fecha_Venta" cssClass="input-group-addon"> Fecha Venta: </form:label>
-                            <form:input path="Fecha_Venta" cssClass="form-control"></form:input>
+                            <form:input type="date" path="Fecha_Venta" cssClass="form-control"></form:input>
                             </div>
                             <br>
                             <br>

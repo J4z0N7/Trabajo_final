@@ -1,58 +1,53 @@
-
 package modelos;
 
 
 public class DVentas {
-   private int Ctd_Producto;
-   private String Fecha_Venta;
-   private String Nombre_Producto;
-   private String Nom_Cliente;
-   
-public DVentas(){
+    private int id_ventas;
+    private int cantidad;
+    private int id_cliente;
+    private int id_producto;
+
+    public DVentas(){
+    }
     
-    /**
-     *
-     * @param Ctd_Producto
-     * @param Fecha_Venta
-     * @param Nombre_Producto
-     * @param Nom_Cliente
-     */}
-    public DVentas(int Ctd_Producto, String Fecha_Venta, String Nombre_Producto,String Nom_Cliente){
-    this.Ctd_Producto=Ctd_Producto;
-    this.Fecha_Venta=Fecha_Venta;
-    this.Nombre_Producto=Nombre_Producto;
-    this.Nom_Cliente=Nom_Cliente;
+    public DVentas(int id_ventas, int cantidad, int id_cliente, int id_producto){
+    
+    this.id_ventas=id_ventas;
+    this.cantidad=cantidad;
+    this.id_cliente=id_cliente;
+    this.id_producto=id_producto;
+    }
+    
+    public int getId_ventas() {
+        return id_ventas;
     }
 
-    public int getCtd_Producto() {
-        return Ctd_Producto;
+    public void setId_ventas(int id_ventas) {
+        this.id_ventas = id_ventas;
     }
 
-    public void setCtd_Producto(int Ctd_Producto) {
-        this.Ctd_Producto = Ctd_Producto;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public String getFecha_Venta() {
-        return Fecha_Venta;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
-    public void setFecha_Venta(String Fecha_Venta) {
-        this.Fecha_Venta = Fecha_Venta;
+    public int getId_cliente() {
+        return id_cliente;
     }
 
-    public String getNombre_Producto() {
-        return Nombre_Producto;
+    public void setId_cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
-    public void setNombre_Producto(String Nombre_Producto) {
-        this.Nombre_Producto = Nombre_Producto;
+    public int getId_Producto() {
+        return id_producto;
     }
 
-    public String getNom_Cliente() {
-        return Nom_Cliente;
+    public void setId_Producto(int id_producto) {
+        this.id_producto = id_producto;
     }
-
-    public void setNom_Cliente(String Nom_Cliente) {
-        this.Nom_Cliente = Nom_Cliente;
-    }
+    
 }

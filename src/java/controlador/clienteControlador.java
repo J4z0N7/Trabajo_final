@@ -132,7 +132,6 @@ public class clienteControlador {
         String deletePath = req.getServletContext().getRealPath("") + File.separator;
         String foto = req.getParameter("foto");
         System.out.println(deletePath + " ------ " + foto);
-
         cliB.borrarImagen(foto,deletePath, id);
         mav.setViewName("redirect:/listarJstl.htm");
         return mav;
